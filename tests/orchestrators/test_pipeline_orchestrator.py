@@ -1,6 +1,6 @@
 import pytest
 from pytest import raises
-from unittest.mock import Mock
+from unittest.mock import Mock, MagicMock
 
 from llama_agents import ServiceComponent, QueueMessage
 from llama_agents.orchestrators.pipeline import get_service_component_message
@@ -29,7 +29,7 @@ def component_service_component() -> ServiceComponent:
 
 
 def test_get_service_component_message_with_agent(
-    mocker: pytest.MonkeyPatch, agent_service_component: ServiceComponent
+    mocker: MagicMock, agent_service_component: ServiceComponent
 ) -> None:
     """Test service component message creation for agent type components."""
     task_id: str = "task123"
@@ -65,7 +65,7 @@ def test_get_service_component_message_with_agent(
 
 
 def test_get_service_component_message_with_component(
-    mocker: pytest.MonkeyPatch, component_service_component: ServiceComponent
+    mocker: MagicMock, component_service_component: ServiceComponent
 ) -> None:
     """Test service component message creation for component type components."""
     task_id: str = "task123"
@@ -101,7 +101,7 @@ def test_get_service_component_message_with_component(
 
 
 def test_get_service_component_message_with_invalid_module_type(
-    mocker: pytest.MonkeyPatch, agent_service_component: ServiceComponent
+    mocker: MagicMock, agent_service_component: ServiceComponent
 ) -> None:
     """Test error handling for invalid module types by dynamically setting an unsupported enum value."""
     # Dynamically set an invalid module_type
